@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
-
+  rescue_from ActiveRecord::RecordNotFound,with: :invalid_cart
   # GET /carts
   # GET /carts.json
   def index
@@ -28,7 +28,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: '商品成功被创建.' }
+        format.html { redirect_to @cart, notice: '购物车被创建.' }
         format.json { render :show, status: :created, location: @cart }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CartsController < ApplicationController
   def update
     respond_to do |format|
       if @cart.update(cart_params)
-        format.html { redirect_to @cart, notice: '商品成功被更新.' }
+        format.html { redirect_to @cart, notice: '购物车被更新.' }
         format.json { render :show, status: :ok, location: @cart }
       else
         format.html { render :edit }
@@ -54,9 +54,10 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart.destroy
+    @cart.destroy if @cart.id ==session[:cart_id]
+    session[:cart_id]=nil
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: '商品成功被删除' }
+      format.html { redirect_to store_index_url, notice: '购物车被删除' }
       format.json { head :no_content }
     end
   end
@@ -71,4 +72,9 @@ class CartsController < ApplicationController
     def cart_params
       params.fetch(:cart, {})
     end
+
+  def invalid_from
+    logger.error "Attempt to access invalid cart #{params[:id]}"
+    redirect_to store_index_url, notice: '无效的购物车'
+  end
 end
