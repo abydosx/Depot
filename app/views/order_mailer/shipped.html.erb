@@ -1,0 +1,11 @@
+<h3>在线书城</h3>
+<p>
+  您的商品我们已经发货
+</p>
+<table>
+  <tr>
+    <th colspan="2">Qty</th>
+    <th>Description</th>
+  </tr>
+  <%= render @order.line_items -%>
+</table>
