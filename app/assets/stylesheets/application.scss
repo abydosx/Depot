@@ -9,7 +9,6 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
  *= require_tree .
  *= require_self
  */
@@ -58,6 +57,25 @@ body, body >p, body ol, body >ul, body >td {magrin: px !important;}
   #side {
     padding: 1em 2em;
     background: lightskyblue;
+    form, div {
+      display: inline;
+    }
+
+    input {
+      font-size: small;
+    }
+
+    #cart {
+      font-size: smaller;
+      color: white;
+
+      table {
+        border-top: 1px dotted #595;
+        boder-bottom: 1px dotted #595;
+        margin-bottom: 10px;
+      }
+    }
+
 
       ul{
         padding: 0;
@@ -86,5 +104,45 @@ body, body >p, body ol, body >ul, body >td {magrin: px !important;}
 
   #banner .title {
     display: none;
+  }
+
+  .depot_form {
+    fieldset {
+      background: #efe;
+
+      legend {
+        color: #dfd;
+        background: #141;
+        font-family: sans-serif;
+        padding: 0.2em 1em;
+      }
+
+      div {
+        margin-bottom: 0.3em;
+      }
+    }
+
+    form {
+      label {
+        width: 5em;
+        float: left;
+        text-align: right;
+        padding-top: 0.2em;
+        margin-right: 0.1em;
+        display: block;
+      }
+
+      select, textarea, input {
+        margin-left: 0.5em;
+      }
+
+      .submit {
+        margin-left: 4em;
+      }
+
+      br {
+        display: none;
+      }
+    }
   }
 }

@@ -1,2 +1,4 @@
-//= link_tree ../images
-//= link_directory ../stylesheets .css
+//= link lrg.jpg
+//= link application.css
+//= link application.js
+//= link logo.svg

@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
   <head>
     <title>在线书城</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/le-frog/jquery-ui.min.css' %>
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'  %>
+
+
+
   </head>
 
   <body class='<%= controller.controller_name %>'>
@@ -16,6 +20,13 @@
     </div>
     <div id="columns">
       <div id="side">
+        <div id="cart">
+          <% if @cart %>
+            <%= render @cart %>
+          <% end %>
+        </div>
+
+
         <ur>
           <li><a href="http://www....">主页</a></li>
           <li><a href="http://www..../faq">问题</a></li>
@@ -27,5 +38,8 @@
         <%= yield %>
       </div>
     </div>
+
+
+
   </body>
 </html>
