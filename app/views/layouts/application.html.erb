@@ -15,6 +15,11 @@
 
   <body class='<%= controller.controller_name %>'>
     <div id="banner">
+      <%= form_tag store_index_path, class: 'locale' do %>
+        <%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.to_s), onchange: 'this.form.submit()' %>
+        <%= submit_tag 'submit' %>
+        <%= javascript_tag "$('.locale input').hide()" %>
+      <% end %>
       <%= image_tag 'logo.svg', alt: '在线书城' %>
       <span class="title"><%= @page_title %></span>
     </div>
@@ -28,11 +33,21 @@
 
 
         <ur>
-          <li><a href="http://www....">主页</a></li>
-          <li><a href="http://www..../faq">问题</a></li>
-          <li><a href="http://www..../news">新闻</a></li>
-          <li><a href="http://www..../contact">联系作者</a></li>
+          <li><a href="http://www...."><%= t('.home') %></a></li>
+          <li><a href="http://www..../faq"><%= t('.questions') %></a></li>
+          <li><a href="http://www..../news"><%= t('.news') %></a></li>
+          <li><a href="http://www..../contact"><%= t('.contact') %></a></li>
         </ur>
+
+        <%if session[:user_id] %>
+        <ul>
+          <li><%= link_to t('.Orders'),    orders_path %></li>
+          <li><%= link_to t('.Products'),   products_path %></li>
+          <li><%= link_to t('.Users'),    users_path %></li>
+        </ul>
+        <%= button_to t('.logout_html'), logout_path, method: :delete%>
+        <% end %>
+
       </div>
       <div id="main">
         <%= yield %>

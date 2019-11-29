@@ -13,26 +13,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label :name,t('.name')%>
     <%= f.text_field :name, size: 40 %>
   </div>
 
   <div class="field">
-    <%= f.label :address %>
+    <%= f.label :address,t('.address_html') %>
     <%= f.text_area :address, rows: 3, cols: 40 %>
   </div>
 
   <div class="field">
-    <%= f.label :email %>
+    <%= f.label :email,t('.email') %>
     <%= f.text_field :email, size: 40 %>
   </div>
 
   <div class="field">
-    <%= f.label :pay_type %>
-    <%= f.select :pay_type, Order.pay_types.keys, prompt: '选择支付方式' %>
+    <%= f.label :pay_type,t('.pay_type') %>
+    <%= f.select :pay_type, Order.pay_types.keys, prompt: t('.pay_prompt_html') %>
   </div>
 
   <div class="actions">
-    <%= f.submit '提交订单' %>
+    <%= f.submit t('.submit') %>
   </div>
 <% end %>

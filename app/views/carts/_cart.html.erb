@@ -1,5 +1,5 @@
 <% unless cart.line_items.empty? %>
-<h2>你的购物车</h2>
+<h2><%= t('carts.cart.title') %>></h2>
 
 <table>
   <%# @cart.line_items.each do |item| %>
@@ -26,8 +26,8 @@
 <!--    <li><%#=item.quantity %> &times;<%#=item.product.title %></li>-->
 <%# end %>
 <!--</ul>-->
-<%= button_to '结算', new_order_path, method: :get %>
+<%= button_to t('.checkout'), new_order_path, method: :get %>
 
-<%= button_to '清空购物车',cart, method: :delete ,
+<%= button_to t('.empty'),cart, method: :delete ,
               data: {confirm:'确认删除购物车么？'}%>
 <% end %>
